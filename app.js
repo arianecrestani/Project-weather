@@ -1,55 +1,62 @@
 /* Global Variables */
-const generate = document.querySelector('.generate');
-const textArea = document.querySelector('textarea');
-const zipcode = document.querySelector('input');
+const generate = document.getElementById("generate");
+const textArea = document.getElementById("fellings");
+const zipcode = document.getElementById("zip");
 
 // Create a new date instance dynamically with JS
 let dt = new Date();
-let newDate = dt.getMonth()+ 1 + '/' + dt.getDate()+ '/' + dt.getFullYear();
+let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 
-//---------------//
-//Write an async function in app.js that uses fetch() to make a GET request to the OpenWeatherMap API.
-let baseUrl = 'api.openweathermap.org/data/2.5/weather?q={germany}&appid='
-let apiKey = '96516fe8a09b3dba396ec9ffdb642eac';
-//check the server for latest values of the page
-const newDay =document.getElementById ('zip').value;
-// Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', boxClick);
 /* Function called by event listener */
-function boxClick() {
-    let textValue = textArea.value;
-    let zipValue = zipcode.value;
+const generateButtonClick = () => {
+  getOpenWeatherTemperature(zipcode.value);
+};
 
-    getWeather(zipValue, textValue).then(() => {
-        //getServerData();
-    });
-}
-
+// Event listener to add function to existing HTML DOM element
+generate.addEventListener("click", generateButtonClick);
 
 /* Function to GET Web API Data*/
 
-const getApi = async (zipcode,textArea)=>{
-
-  const res = await fetch(zipcode + textArea);
+const getOpenWeatherTemperature = async (zipcode) => {
+  let baseUrl = "http://api.openweathermap.org/data/2.5/weather?";
+  let apiKey = "96516fe8a09b3dba396ec9ffdb642eac";
+  //o que divide os dois paramentros é o & comercial
+  //api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
+  const result = await fetch(
+    `${baseUrl}zip=${zipcode},de&appid=${apiKey}&units=metric`
+  ); // continuacao de criando uma URL
   try {
-    const data = await res.json();
-    console.log(data)
+    const data = await result.json();
+    console.log(data);
     return data;
-  }  catch(error) {
+  } catch (error) {
     console.log("error", error);
-    // appropriately handle the error
   }
-}
+};
 
+// Async POST Function to POST data */
+const postData = async (url, data) => {
+  const response = await fetch(url, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  });
 
+  try {
+    const newData = await response.json();
+    return newData;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
 
-//api
+//Write an async function in app.js that uses fetch() to make a GET request to the OpenWeatherMap API.
 
-//fetch api
-
-/* Function to POST data */
+//check the server for latest values of the page
 
 // get project data and update the UI
 
 // checking if there is a temperature attribute
-
