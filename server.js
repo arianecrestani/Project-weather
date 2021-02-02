@@ -19,11 +19,6 @@ function createExpressApp() {
   return app;
 }
 
-// function listening(port) {
-//   console.log(server);
-//   console.log(`running on localhost`);
-// }
-
 function setupEndPoint(app) {
   const projectData = [];
 
@@ -31,11 +26,10 @@ function setupEndPoint(app) {
   app.post("/add", callback);
 
   function callback(req, res) {
-    res.send("post received");
-    console.log("post all");
+    // res.send("post received");
+    console.log(req.body);
+    // console.log(req.text);
   }
-
-  // Callback function to complete GET '/all'
 
   // Respond with JS object when a GET request is made to the homepage
   app.get("/get", function (req, res) {
@@ -51,15 +45,8 @@ const port = 8000;
 
 // Spin up the server
 const server = app.listen(port, listening);
+
 function listening() {
   console.log(server);
   console.log(`running on localhost: ${port}`);
-}
-// post route
-app.post("/add", postData);
-
-function postData(request, response) {
-  projectData = request.body;
-  response.send({ message: "Post recieved" });
-  console.log(request);
 }

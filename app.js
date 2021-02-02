@@ -1,6 +1,6 @@
 /* Global Variables */
 const generate = document.getElementById("generate");
-const textArea = document.getElementById("fellings");
+const textArea = document.getElementById("feelings");
 const zipcode = document.getElementById("zip");
 
 // Create a new date instance dynamically with JS
@@ -9,8 +9,14 @@ let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 
 /* Function called by event listener */
 const generateButtonClick = () => {
-  getOpenWeatherTemperature(zipcode.value);
-  postData("http://localhost:8000/add", {});
+  getOpenWeatherTemperature(zipcode.value).then((data) => {
+    postData({
+      date: newDate,
+      temperature: data.main.temp,
+      feelings: textArea.value,
+      status: data.weather[0].main,
+    }); //then seria a espera de uma acao async
+  });
 };
 
 // Event listener to add function to existing HTML DOM element
@@ -37,6 +43,7 @@ const getOpenWeatherTemperature = async (zipcode) => {
 
 // Async POST Function to POST data */
 const postData = async (data) => {
+  console.log(data);
   const url = "http://localhost:8000/add";
   const response = await fetch(url, {
     method: "POST",
