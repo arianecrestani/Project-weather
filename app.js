@@ -10,6 +10,20 @@ let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 /* Function called by event listener */
 const generateButtonClick = () => {
   getOpenWeatherTemperature(zipcode.value);
+  //    .then(function (weatherData) {
+  //         const temperature = weatherData.main.temp;
+  //         const description = weatherData.weather[0].description;
+  //         const icon = weatherData.weather[0].icon;
+  //         const feeling = userFeeling;
+  //         const country = weatherData.sys.country;
+  //   postData("add/" {
+  //             temperature,
+  //             description,
+  //             icon,
+  //             country,
+  //             userText,
+  //             feeling
+  //   });
 };
 
 // Event listener to add function to existing HTML DOM element
@@ -35,7 +49,8 @@ const getOpenWeatherTemperature = async (zipcode) => {
 };
 
 // Async POST Function to POST data */
-const postData = async (url, data) => {
+const postData = async (data) => {
+  const url = "http://localhost:8000/add";
   const response = await fetch(url, {
     method: "POST",
     credentials: "same-origin",
@@ -52,6 +67,7 @@ const postData = async (url, data) => {
     console.log("error", error);
   }
 };
+//ENVIAR DATA, zipcode TEXTO E temperature PRIMEIRO MEXER NO SERVIDOR
 
 //Write an async function in app.js that uses fetch() to make a GET request to the OpenWeatherMap API.
 
