@@ -10,20 +10,7 @@ let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 /* Function called by event listener */
 const generateButtonClick = () => {
   getOpenWeatherTemperature(zipcode.value);
-  //    .then(function (weatherData) {
-  //         const temperature = weatherData.main.temp;
-  //         const description = weatherData.weather[0].description;
-  //         const icon = weatherData.weather[0].icon;
-  //         const feeling = userFeeling;
-  //         const country = weatherData.sys.country;
-  //   postData("add/" {
-  //             temperature,
-  //             description,
-  //             icon,
-  //             country,
-  //             userText,
-  //             feeling
-  //   });
+  postData("http://localhost:8000/add", {});
 };
 
 // Event listener to add function to existing HTML DOM element

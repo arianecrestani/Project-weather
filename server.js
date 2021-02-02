@@ -19,10 +19,10 @@ function createExpressApp() {
   return app;
 }
 
-function listening(port) {
-  console.log(server);
-  console.log(`running on localhost`);
-}
+// function listening(port) {
+//   console.log(server);
+//   console.log(`running on localhost`);
+// }
 
 function setupEndPoint(app) {
   const projectData = [];
@@ -51,5 +51,15 @@ const port = 8000;
 
 // Spin up the server
 const server = app.listen(port, listening);
+function listening() {
+  console.log(server);
+  console.log(`running on localhost: ${port}`);
+}
+// post route
+app.post("/add", postData);
 
-//post servidor
+function postData(request, response) {
+  projectData = request.body;
+  response.send({ message: "Post recieved" });
+  console.log(request);
+}
