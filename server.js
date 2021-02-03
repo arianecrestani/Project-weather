@@ -1,3 +1,5 @@
+const { request } = require("express");
+
 function createExpressApp() {
   // Express to run server and routes
   const express = require("express");
@@ -21,19 +23,9 @@ function createExpressApp() {
 
 function setupEndPoint(app) {
   const projectData = [];
-
-  // Initialize all route with a callback function
-  app.post("/add", callback);
-
-  function callback(req, res) {
-    // res.send("post received");
-    console.log(req.body);
-    // console.log(req.text);
-  }
-
   // Respond with JS object when a GET request is made to the homepage
-  app.get("/get", function (req, res) {
-    res.send(projectData);
+  app.get("/get", function (request, response) {
+    response.send(projectData);
     console.log("get resquest to homepage");
   });
 }
@@ -49,4 +41,11 @@ const server = app.listen(port, listening);
 function listening() {
   console.log(server);
   console.log(`running on localhost: ${port}`);
+}
+app.post("/add", postData);
+
+function postData(request, response) {
+  projectData = request.body;
+  response.send({ message: "Post received" });
+  console.log(projectData);
 }

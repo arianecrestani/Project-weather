@@ -11,10 +11,12 @@ let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 const generateButtonClick = () => {
   getOpenWeatherTemperature(zipcode.value).then((data) => {
     postData({
+      icon: data.weather[0].icon,
       date: newDate,
       temperature: data.main.temp,
-      feelings: textArea.value,
       status: data.weather[0].main,
+      city: data.name,
+      feelings: textArea.value,
     }); //then seria a espera de uma acao async
   });
 };
@@ -61,12 +63,29 @@ const postData = async (data) => {
     console.log("error", error);
   }
 };
-//ENVIAR DATA, zipcode TEXTO E temperature PRIMEIRO MEXER NO SERVIDOR
 
-//Write an async function in app.js that uses fetch() to make a GET request to the OpenWeatherMap API.
+async function getServerData() {
+  const response = await fetch("/return");
+  const latestEntry = await response.json();
+  // checking if there is a temperature attribute
+  if (latestEntry && latestEntry.temperature) {
+    updateUI(latestEntry);
+  }
+}
+const icon = document.getElementById("icon");
+const date = document.getElementById("date");
+const temp = document.getElementById("temp");
+const status = document.getElementById("status");
+const place = document.getElementById("location");
+const content = document.getElementById("content");
 
-//check the server for latest values of the page
+function updateUI(weather) {
+  console.log(weather);
 
-// get project data and update the UI
-
-// checking if there is a temperature attribute
+  icon.innerHTML = `<img src="svg/${weather.icon}.svg" alt="nothing yet" />`;
+  date.innerHTML = weather.newDate ? weather.newDate : "";
+  temp.innerHTML = `${weather.temperature}°C`;
+  status.innerHTML = weather.status ? weather.status : "";
+  place.innerHTML = weather.city ? weather.city : "";
+  content.innerHTML = weather.userText ? weather.userText : "";
+}
