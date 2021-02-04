@@ -19,7 +19,26 @@ const generateButtonClick = () => {
       date: newDate,
       temperature: data.main.temp,
       status: data.weather[0].main,
-      city: data.name.city,
+      city: data.name,
+      feelings: textArea.value,
+    }).then(() => {
+      getServerData().then((data) => {
+        updateUI(data);
+      });
+    }); //then seria a espera de uma acao async
+  });
+};
+
+/* Function called by event listener */
+const generateButtonClick2 = () => {
+  getOpenWeatherTemperature(zipcode.value).then((data) => {
+    postData({
+      //mandando as info para o servidor
+      icon: data.weather[0].icon,
+      date: newDate,
+      temperature: data.main.temp,
+      status: data.weather[0].main,
+      city: data.name,
       feelings: textArea.value,
     }).then(() => {
       getServerData().then((data) => {
@@ -39,16 +58,9 @@ const getOpenWeatherTemperature = async (zipcode) => {
   let apiKey = "96516fe8a09b3dba396ec9ffdb642eac";
   //o que divide os dois paramentros é o & comercial
   //api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
-  const result = await fetch(
-    `${baseUrl}zip=${zipcode},de&appid=${apiKey}&units=metric`
-  ); // continuacao de criando uma URL
-  try {
-    const data = await result.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log("error", error);
-  }
+  return await fetch(`${baseUrl}zip=${zipcode},de&appid=${apiKey}&units=metric`)
+    .then((response) => response.json())
+    .catch((error) => console.log(error)); // continuacao de criando uma URL
 };
 
 // Async POST Function to POST data */
@@ -104,6 +116,9 @@ function updateUI(weather) {
   date.innerHTML = weather.date ? weather.date : "";
   temp.innerHTML = `${weather.temperature}°C`;
   status.innerHTML = weather.status ? weather.status : "";
-  city.innerHTML = weather.city ? weather.city : "name";
+  city.innerHTML = weather.city ? weather.city : "";
   content.innerHTML = weather.feelings ? weather.feelings : "";
+
+  textArea.value = "";
+  // zipcode
 }
