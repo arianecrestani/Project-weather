@@ -19,7 +19,7 @@ const generateButtonClick = () => {
       date: newDate,
       temperature: data.main.temp,
       status: data.weather[0].main,
-      city: data.name,
+      city: data.name.city,
       feelings: textArea.value,
     }).then(() => {
       getServerData().then((data) => {
@@ -97,13 +97,13 @@ function updateUI(weather) {
   const date = document.getElementById("date");
   const temp = document.getElementById("temp");
   const status = document.getElementById("status");
-  const place = document.getElementById("location");
+  const city = document.getElementById("location");
   const content = document.getElementById("content");
 
   icon.innerHTML = `<img src="svg/${weather.icon}.svg" alt="nothing yet" />`;
   date.innerHTML = weather.date ? weather.date : "";
   temp.innerHTML = `${weather.temperature}°C`;
   status.innerHTML = weather.status ? weather.status : "";
-  place.innerHTML = weather.city ? weather.city : "";
+  city.innerHTML = weather.city ? weather.city : "name";
   content.innerHTML = weather.feelings ? weather.feelings : "";
 }
