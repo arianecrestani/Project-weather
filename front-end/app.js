@@ -1,4 +1,5 @@
 /* Global Variables */
+
 // pegando os elementos do html
 const generate = document.getElementById("generate");
 const textArea = document.getElementById("feelings");
@@ -13,12 +14,17 @@ let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 const generateButtonClick = () => {
   getOpenWeatherTemperature(zipcode.value).then((data) => {
     postData({
+      //mandando as info para o servidor
       icon: data.weather[0].icon,
       date: newDate,
       temperature: data.main.temp,
       status: data.weather[0].main,
       city: data.name,
       feelings: textArea.value,
+    }).then(() => {
+      getServerData().then((data) => {
+        updateUI(data);
+      });
     }); //then seria a espera de uma acao async
   });
 };
@@ -59,35 +65,45 @@ const postData = async (data) => {
   });
 
   try {
-    const newData = await response.json();
+    const newData = await response.json(); //resposta do servidor
     return newData;
   } catch (error) {
     console.log("error", error);
   }
 };
 
-async function getServerData() {
-  const response = await fetch("/return");
-  const latestEntry = await response.json();
-  // checking if there is a temperature attribute
-  if (latestEntry && latestEntry.temperature) {
-    updateUI(latestEntry);
+const getServerData = async () => {
+  const url = "http://localhost:8000/get";
+  const response = await fetch(url, {
+    method: "GET",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  try {
+    const newData = await response.json(); //resposta do servidor
+    return newData;
+  } catch (error) {
+    console.log("error", error);
   }
-}
-const icon = document.getElementById("icon");
-const date = document.getElementById("date");
-const temp = document.getElementById("temp");
-const status = document.getElementById("status");
-const place = document.getElementById("location");
-const content = document.getElementById("content");
+};
 
 function updateUI(weather) {
   console.log(weather);
 
+  const icon = document.getElementById("icon");
+  const date = document.getElementById("date");
+  const temp = document.getElementById("temp");
+  const status = document.getElementById("status");
+  const place = document.getElementById("location");
+  const content = document.getElementById("content");
+
   icon.innerHTML = `<img src="svg/${weather.icon}.svg" alt="nothing yet" />`;
-  date.innerHTML = weather.newDate ? weather.newDate : "";
+  date.innerHTML = weather.date ? weather.date : "";
   temp.innerHTML = `${weather.temperature}°C`;
   status.innerHTML = weather.status ? weather.status : "";
   place.innerHTML = weather.city ? weather.city : "";
-  content.innerHTML = weather.userText ? weather.userText : "";
+  content.innerHTML = weather.feelings ? weather.feelings : "";
 }

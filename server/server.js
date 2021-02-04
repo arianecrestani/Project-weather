@@ -21,8 +21,9 @@ function createExpressApp() {
   return app;
 }
 
+//entrada e saida do servidor (routes)
 function setupEndPoint(app) {
-  let projectData = [];
+  let projectData = {};
   // Respond with JS object when a GET request is made to the homepage
   app.get("/get", (request, response) => {
     response.send(projectData);
@@ -30,10 +31,14 @@ function setupEndPoint(app) {
   });
 
   app.post("/add", (request, response) => {
-    projectData = request.body;
+    projectData = request.body; //pegou as info do app
     response.send({ message: "Post received" });
     console.log(projectData);
   });
+}
+
+function listening() {
+  console.log(server);
 }
 
 const app = createExpressApp();
@@ -43,8 +48,3 @@ const port = 8000;
 
 // Spin up the server
 const server = app.listen(port, listening);
-
-function listening() {
-  console.log(server);
-  console.log(`running on localhost: ${port}`);
-}
