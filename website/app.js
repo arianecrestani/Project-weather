@@ -12,40 +12,22 @@ let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 
 /* Function called by event listener */
 const generateButtonClick = () => {
-  getOpenWeatherTemperature(zipcode.value).then((data) => {
-    postData({
-      //mandando as info para o servidor
-      icon: data.weather[0].icon,
-      date: newDate,
-      temperature: data.main.temp,
-      status: data.weather[0].main,
-      city: data.name,
-      feelings: textArea.value,
-    }).then(() => {
-      getServerData().then((data) => {
-        updateUI(data);
-      });
-    }); //then seria a espera de uma acao async
-  });
+  getOpenWeatherTemperature(zipcode.value)
+    .then((wheatherData) => postData(dataToServerInfo(wheatherData)))
+    .then(() => getServerData())
+    .then((serverData) => updateUI(serverData));
 };
 
-/* Function called by event listener */
-const generateButtonClick2 = () => {
-  getOpenWeatherTemperature(zipcode.value).then((data) => {
-    postData({
-      //mandando as info para o servidor
-      icon: data.weather[0].icon,
-      date: newDate,
-      temperature: data.main.temp,
-      status: data.weather[0].main,
-      city: data.name,
-      feelings: textArea.value,
-    }).then(() => {
-      getServerData().then((data) => {
-        updateUI(data);
-      });
-    }); //then seria a espera de uma acao async
-  });
+const dataToServerInfo = (data) => {
+  return {
+    //mandando as info para o servidor
+    icon: data.weather[0].icon,
+    date: newDate,
+    temperature: data.main.temp,
+    status: data.weather[0].main,
+    city: data.name,
+    feelings: textArea.value,
+  };
 };
 
 // Event listener to add function to existing HTML DOM element
