@@ -22,11 +22,17 @@ function createExpressApp() {
 }
 
 function setupEndPoint(app) {
-  const projectData = [];
+  let projectData = [];
   // Respond with JS object when a GET request is made to the homepage
-  app.get("/get", function (request, response) {
+  app.get("/get", (request, response) => {
     response.send(projectData);
     console.log("get resquest to homepage");
+  });
+
+  app.post("/add", (request, response) => {
+    projectData = request.body;
+    response.send({ message: "Post received" });
+    console.log(projectData);
   });
 }
 
@@ -41,11 +47,4 @@ const server = app.listen(port, listening);
 function listening() {
   console.log(server);
   console.log(`running on localhost: ${port}`);
-}
-app.post("/add", postData);
-
-function postData(request, response) {
-  projectData = request.body;
-  response.send({ message: "Post received" });
-  console.log(projectData);
 }

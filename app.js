@@ -1,10 +1,12 @@
 /* Global Variables */
+// pegando os elementos do html
 const generate = document.getElementById("generate");
 const textArea = document.getElementById("feelings");
 const zipcode = document.getElementById("zip");
 
 // Create a new date instance dynamically with JS
 let dt = new Date();
+// creando nova data
 let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 
 /* Function called by event listener */
