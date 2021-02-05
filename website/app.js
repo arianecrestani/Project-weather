@@ -13,14 +13,14 @@ let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 /* Function called by event listener */
 const generateButtonClick = () => {
   getOpenWeatherTemperature(zipcode.value)
-    .then((wheatherData) => postData(dataToServerInfo(wheatherData)))
+    .then((wheatherData) => postData(createDataJson(wheatherData)))
     .then(() => getServerData())
     .then((serverData) => updateUI(serverData));
 };
 
-const dataToServerInfo = (data) => {
+const createDataJson = (data) => {
   return {
-    //mandando as info para o servidor
+    //criando as info (json) para o servidor
     icon: data.weather[0].icon,
     date: newDate,
     temperature: data.main.temp,
@@ -48,22 +48,16 @@ const getOpenWeatherTemperature = async (zipcode) => {
 // Async POST Function to POST data */
 const postData = async (data) => {
   console.log(data);
-  const url = "http://localhost:8000/add";
-  const response = await fetch(url, {
+  return await fetch("http://localhost:8000/add", {
     method: "POST",
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data), // body data type must match "Content-Type" header
-  });
-
-  try {
-    const newData = await response.json(); //resposta do servidor
-    return newData;
-  } catch (error) {
-    console.log("error", error);
-  }
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 };
 
 const getServerData = async () => {
