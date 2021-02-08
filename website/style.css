@@ -1,104 +1,116 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 2px;
+}
+
 body {
-  background: #fffff8;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(
+    to right,
+    rgb(41, 128, 185),
+    rgb(44, 62, 80)
+  );
+  font-family: "Noto Sans HK", sans-serif;
 }
 
 #app {
-  display: grid;
-  grid-auto-rows: minmax(150px, auto);
-  /* grid-template-columns:  */
-  height: 100vh;
-  background: #f23557;
-  color: #f0d43a;
-  justify-content: center;
-  grid-gap: 1em;
-  font-size: 20px;
-  font-family: "Oswald", sans-serif;
+  text-align: center;
+  background-color: whitesmoke;
+  width: 684px;
+  height: 630px;
+  position: absolute;
+  top: 52%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  border-radius: 66px;
+  box-shadow: 2px 2px #14213d;
 }
 
-.holder {
+.zip {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#zip {
+  width: 50%;
+  height: 47px;
+  font-size: 1.5em;
+  border-radius: 10px;
+  border: 1px solid dimgray;
+  padding-left: 50px;
+}
+textarea {
+  padding-top: 13px;
+  padding-left: 90px;
+  width: 70%;
+  height: 56px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  background: #22b2da;
+  font-size: 1.5em;
+}
+.icon > img {
+  width: 20%;
+  transform: translateY(-22px);
+}
+#generate {
+  background-color: lightslategrey;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  width: 80%;
+  height: 80px;
+  transform: translateX(-50%);
+  border-radius: 26px;
+  font-size: 1.5em;
 }
 
-.entry {
-  background: rgba(59, 74, 107, 0.4);
+#generate:hover {
+  background-color: #22b2da;
 }
-
-#entryHolder {
-}
-
-#date {
-}
-
-#temp {
-}
-
 #content {
+  width: 60%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2em;
+}
+#temp {
+  font-size: 3.5em;
+  margin-top: 9px;
+}
+#date {
+  margin: -5px;
+  font-size: 1.5em;
 }
 
-.headline {
-}
-.title {
-}
-
-/*  Basic Styling To Override Default For Basic HTML Elements */
 label {
   display: block;
   font-size: 27px;
 }
 
 input {
-  display: block;
-  height: 60px;
-  width: 320px;
   background: #22b2da;
-  color: #f0d43a;
-  font-size: 20px;
-  font-family: "Oswald", sans-serif;
-  border: none;
+  text-emphasis-color: white;
 }
 
 button {
-  width: 400px;
-  height: 100px;
+  width: 250px;
+  height: 70px;
   background: #3b4a6b;
-  color: #f0d43a;
   font-size: 26px;
   font-family: "Oswald", sans-serif;
-  border: none;
+
   box-shadow: 2px 4px 5px #444;
 }
 h1 {
   font-size: 36px;
 }
-
-textarea {
-  background: #22b2da;
-  color: #f0d43a;
-  font-size: 20px;
-  font-family: "Oswald", sans-serif;
-}
-/* Reset style for HTML element on active to have no border*/
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-}
-/* Style for Placeholder Text*/
-::placeholder {
-  /* Firefox, Chrome, Opera */
-  color: #f0d43a;
-  font-family: "Oswald", sans-serif;
-}
-
-:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #f0d43a;
-  font-family: "Oswald", sans-serif;
-}
-
-::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: #f0d43a;
-  font-family: "Oswald", sans-serif;
+#entryHolder {
+  display: flex;
+  flex-direction: column;
 }

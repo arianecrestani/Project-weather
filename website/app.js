@@ -23,7 +23,7 @@ const createDataJson = (data) => {
     //criando as info (json) para o servidor
     icon: data.weather[0].icon,
     date: newDate,
-    temperature: data.main.temp,
+    temperature: Math.floor(data.main.temp),
     status: data.weather[0].main,
     city: data.name,
     feelings: textArea.value,
