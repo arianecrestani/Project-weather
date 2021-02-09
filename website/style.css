@@ -10,7 +10,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-image: linear-gradient(
     to right,
     rgb(41, 128, 185),
@@ -63,26 +62,22 @@ textarea {
 }
 #generate {
   background-color: lightslategrey;
+  color: lightblue;
   position: absolute;
-  bottom: 20px;
+  bottom: 25px;
   left: 50%;
-  width: 80%;
-  height: 80px;
+  width: 78%;
+  height: 69px;
   transform: translateX(-50%);
   border-radius: 26px;
   font-size: 1.5em;
-  box-shadow: 2px 4px 5px #444;
+  box-shadow: 1px 0.3px 5px #444;
 }
 
 #generate:hover {
   background-color: #22b2da;
 }
-#content {
-  width: 60%;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.2em;
-}
+
 #temp {
   font-size: 3.5em;
   margin-top: 9px;
@@ -90,16 +85,6 @@ textarea {
 #date {
   margin: -10px;
   font-size: 1.5em;
-}
-
-label {
-  display: block;
-  font-size: 27px;
-}
-
-input {
-  background: #22b2da;
-  text-emphasis-color: white;
 }
 
 #entryHolder {
