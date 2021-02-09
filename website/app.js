@@ -96,5 +96,5 @@ function updateUI(weather) {
   content.innerHTML = weather.feelings ? weather.feelings : "";
 
   textArea.value = "";
-  // zipcode
+  zipcode.value = "";
 }

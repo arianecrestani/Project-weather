@@ -1,0 +1,51 @@
+@media (max-width: 660px) {
+  #app {
+    width: 400px;
+    height: 520px;
+  }
+  #generate {
+    background-color: lightslategrey;
+    position: absolute;
+    bottom: 13px;
+    left: 50%;
+    width: 78%;
+    height: 57px;
+    transform: translateX(-50%);
+    border-radius: 22px;
+    font-size: 1.5em;
+    box-shadow: 2px 0.3px #444;
+  }
+  textarea {
+    padding-top: -1px;
+    padding-left: 22px;
+    height: 50px;
+    width: 83%;
+    font-size: 1.3em;
+  }
+  #zip {
+    width: 65%;
+    height: 50px;
+    font-size: 1.3em;
+    border: 1px solid dimgray;
+    padding-left: 28px;
+  }
+  *,
+  *::before,
+  *::after {
+    padding: 1px;
+  }
+  .icon > img {
+    transform: translateY(-9px);
+  }
+}
+@media (max-width: 350px) {
+  #app {
+    width: 700px;
+    height: 620px;
+  }
+  *,
+  *::before,
+  *::after {
+    padding: 1px;
+  }
+}
