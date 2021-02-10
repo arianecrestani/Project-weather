@@ -36,8 +36,8 @@ generate.addEventListener("click", generateButtonClick);
 /* Function to GET Web API Data*/
 
 const getOpenWeatherTemperature = async (zipcode) => {
-  let baseUrl = "http://api.openweathermap.org/data/2.5/weather?";
-  let apiKey = "96516fe8a09b3dba396ec9ffdb642eac";
+  const baseUrl = "http://api.openweathermap.org/data/2.5/weather?";
+  const apiKey = "96516fe8a09b3dba396ec9ffdb642eac";
   //o que divide os dois paramentros é o & comercial
   //api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
   return await fetch(`${baseUrl}zip=${zipcode},de&appid=${apiKey}&units=metric`)
