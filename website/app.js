@@ -10,7 +10,7 @@ let dt = new Date();
 // creando nova data
 let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 
-/* Function called by event listener */
+/* Function called by event */
 const generateButtonClick = () => {
   getOpenWeatherTemperature(zipcode.value)
     .then((wheatherData) => postData(createDataJson(wheatherData)))
