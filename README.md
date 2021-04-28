@@ -15,4 +15,6 @@ execute the server.js file with
 
 node server.js
 
+![flwochart](./graph.jpg)
+
 
