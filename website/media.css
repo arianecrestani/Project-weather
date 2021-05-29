@@ -14,6 +14,7 @@
     border-radius: 22px;
     font-size: 1.5em;
     box-shadow: 2px 0.3px #444;
+   
   }
   textarea {
     padding-top: -1px;
@@ -21,6 +22,8 @@
     height: 50px;
     width: 83%;
     font-size: 1.3em;
+  
+    
   }
   #zip {
     width: 65%;
@@ -28,6 +31,7 @@
     font-size: 1.3em;
     border: 1px solid dimgray;
     padding-left: 28px;
+    
   }
   *,
   *::before,

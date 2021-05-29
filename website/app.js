@@ -1,14 +1,14 @@
 /* Global Variables */
 
-// pegando os elementos do html
+// get elements in Html
 const generate = document.getElementById("generate");
 const textArea = document.getElementById("feelings");
 const zipcode = document.getElementById("zip");
 
 // Create a new date instance dynamically with JS
 let dt = new Date();
-// creando nova data
-let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
+// create a new data
+let newDate = dt.getDate() + "/" + (1 + dt.getMonth()) + "/" + dt.getFullYear();
 
 /* Function called by event */
 const generateButtonClick = () => {
@@ -20,7 +20,7 @@ const generateButtonClick = () => {
 
 const createDataJson = (data) => {
   return {
-    //criando as info (json) para o servidor
+    //create a info (json) to server
     icon: data.weather[0].icon,
     date: newDate,
     temperature: Math.floor(data.main.temp),
@@ -34,18 +34,16 @@ const createDataJson = (data) => {
 generate.addEventListener("click", generateButtonClick);
 
 /* Function to GET Web API Data*/
-
 const getOpenWeatherTemperature = async (zipcode) => {
   const baseUrl = "http://api.openweathermap.org/data/2.5/weather?";
   const apiKey = "96516fe8a09b3dba396ec9ffdb642eac";
-  //o que divide os dois paramentros é o & comercial
-  //api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
+
   return await fetch(`${baseUrl}zip=${zipcode},de&appid=${apiKey}&units=metric`)
     .then((response) => response.json())
-    .catch((error) => console.log(error)); // continuacao de criando uma URL
+    .catch((error) => console.log(error));
 };
 
-// Async POST Function to POST data */
+// Async POST Function to POST data 
 const postData = async (data) => {
   console.log(data);
   return await fetch("http://localhost:8000/add", {
@@ -71,7 +69,7 @@ const getServerData = async () => {
   });
 
   try {
-    const newData = await response.json(); //resposta do servidor
+    const newData = await response.json();
     return newData;
   } catch (error) {
     console.log("error", error);
@@ -79,8 +77,6 @@ const getServerData = async () => {
 };
 
 function updateUI(weather) {
-  console.log(weather);
-
   const icon = document.getElementById("icon");
   const date = document.getElementById("date");
   const temp = document.getElementById("temp");
@@ -97,4 +93,5 @@ function updateUI(weather) {
 
   textArea.value = "";
   zipcode.value = "";
+  
 }

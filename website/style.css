@@ -3,7 +3,7 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
-  padding: 2px;
+  padding: 3px;
 }
 
 body {
@@ -41,28 +41,30 @@ body {
 #zip {
   width: 50%;
   height: 47px;
-  font-size: 1.5em;
   border-radius: 10px;
   border: 1px solid dimgray;
-  padding-left: 40px;
+  padding-left: 50px;
+  outline: none;
+  
 }
 textarea {
   padding-top: 13px;
-  padding-left: 60px;
+  padding-left: 50px;
   width: 70%;
   height: 56px;
   border-radius: 10px;
   font-family: "Poppins", sans-serif;
-  background: #22b2da;
   font-size: 1.5em;
+  outline: none;
+
 }
 .icon > img {
   width: 20%;
-  transform: translateY(-22px);
+  transform: translateY(-7px);
 }
 #generate {
   background-color: lightslategrey;
-  color: lightblue;
+  color: aliceblue;
   position: absolute;
   bottom: 25px;
   left: 50%;
@@ -72,6 +74,7 @@ textarea {
   border-radius: 26px;
   font-size: 1.5em;
   box-shadow: 1px 0.3px 5px #444;
+  outline: none;
 }
 
 #generate:hover {
