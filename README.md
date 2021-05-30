@@ -12,7 +12,10 @@ Need has Node js install along with express and body-parser
 - `npm install body-parser`
 - `npm start`
 
-## General info
+### Preview 
+
+![flwochart](./preview.png)
+### General info
 
 This project is the project for Udacity's Front End Web Developer Nanodegree program.
  
@@ -22,10 +25,3 @@ This graph so that you, reader, can understand the step by step of the line of r
 
 
 ![flwochart](./graph.jpg)
-
-
-
-
-### Preview 
-
-![flwochart](./preview.png)
